@@ -1,0 +1,67 @@
+
+.sidebar-custom {
+  background: #fff;
+  height: 100vh;
+  padding: 50px 50px 50px 50px;
+  border-radius: 24px 0 0 24px;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  position: relative;
+  border-right: 2px solid #e2e2e2; 
+}
+
+
+.sidebar-title {
+  font-size: 3rem;
+  font-weight: 610;
+  margin-bottom: 48px;
+}
+
+.sidebar-list {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 40px 0;
+}
+
+.sidebar-list li {
+  font-size: 2.3rem;
+  margin-bottom: 38px;
+  font-weight: 350;
+}
+
+.sidebar-bottom {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 24px;
+  padding: 0 24px;
+}
+
+.sidebar-divider {
+  margin: 0 0 16px 0;
+  border: none;
+  border-top: 2px solid #9b9b9b;
+}
+
+.sidebar-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+}
+
+.tag {
+  padding: 6px 18px;
+  border-radius: 16px;
+  color: #fff;
+  font-weight: 600;
+  font-size: 1.25rem;
+  display: inline-block;
+}
+
+.tag-casa { background: #27ae60; }
+.tag-estudo { background: #f39c12; }
+.tag-trabalho { background: #2980ef; }
+.tag-pessoal { background: #e74c3c; }
+.tag-saude { background: #9b59b6; }

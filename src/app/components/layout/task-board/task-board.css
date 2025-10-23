@@ -1,0 +1,61 @@
+.taskboard-container {
+    padding: 20px 32px 0 32px;
+    min-height: 100vh;
+}
+
+.taskboard-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 32px;
+}
+
+.taskboard-title {
+    font-size: 3.5rem;
+    font-weight: 650;
+}
+
+.taskboard-controls {
+    display: flex;
+    align-items: center;
+    margin-bottom: 32px;
+}
+
+.task-input {
+    flex-grow: 1;
+    padding: 12px 16px;
+    border: 1px solid #eee;
+    border-radius: 8px;
+    font-size: 1.4rem;
+    margin-right: 16px;
+}
+
+.task-category-select {
+    padding: 12px 16px;
+    border: 1px solid #eee;
+    border-radius: 8px;
+    font-size: 1.4rem;
+    margin-right: 16px;
+}
+
+.taskboard-dot {
+    width: 8px;
+    height: 8px;
+    background: #eee;
+    border-radius: 50%;
+}
+
+.taskboard-empty {
+    text-align: center;
+    opacity: 0.5;
+}
+
+.taskboard-illustration {
+    max-width: 100%;
+    height: auto;
+}
+
+.taskboard-empty-msg {
+    font-size: 1.6rem;
+    margin-top: 12px;
+}
