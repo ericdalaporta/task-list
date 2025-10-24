@@ -1,0 +1,33 @@
+:host {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  width: 100%;
+}
+
+.sidebar-container {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  width: 100%;
+}
+
+.sidebar-categories {
+  flex: 1;
+  overflow-y: auto;
+}
+
+.sidebar-category {
+  transition: color 0.3s ease;
+  cursor: pointer;
+  color: #000000;
+}
+
+.sidebar-category:hover {
+  color: #9370db !important;
+  font-weight: bold;
+}
+
+.sidebar-badges {
+  margin-top: auto;
+}
