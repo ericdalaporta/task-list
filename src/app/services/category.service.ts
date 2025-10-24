@@ -5,12 +5,11 @@ import { BehaviorSubject, Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class CategoryService {
-  private storageKey = 'tarefas_categorias';
   private categoriasSubject: BehaviorSubject<string[]>;
   public categorias$: Observable<string[]>;
+  private storageKey = 'tarefas_categorias';
 
   constructor() {
-    // Carregar categorias do localStorage ou usar padrão
     const categoriasSalvas = this.carregarDoStorage();
     this.categoriasSubject = new BehaviorSubject<string[]>(categoriasSalvas);
     this.categorias$ = this.categoriasSubject.asObservable();
@@ -18,7 +17,6 @@ export class CategoryService {
 
   private carregarDoStorage(): string[] {
     try {
-      // Verificar se estamos em ambiente de browser
       if (typeof window === 'undefined' || !window.localStorage) {
         return ['Casa', 'Estudo', 'Trabalho', 'Pessoal', 'Saúde'];
       }
@@ -30,17 +28,14 @@ export class CategoryService {
     } catch (error) {
       // Silenciar erros
     }
-    // Retornar categorias padrão
     return ['Casa', 'Estudo', 'Trabalho', 'Pessoal', 'Saúde'];
   }
 
   private salvarNoStorage(categorias: string[]) {
     try {
-      // Verificar se estamos em ambiente de browser
       if (typeof window === 'undefined' || !window.localStorage) {
         return;
       }
-      
       localStorage.setItem(this.storageKey, JSON.stringify(categorias));
     } catch (error) {
       console.error('Erro ao salvar categorias:', error);
@@ -66,7 +61,6 @@ export class CategoryService {
     this.salvarNoStorage(categorias);
   }
 
-  // Para reordenar categorias (drag & drop)
   reordenarCategorias(categorias: string[]) {
     this.categoriasSubject.next(categorias);
     this.salvarNoStorage(categorias);

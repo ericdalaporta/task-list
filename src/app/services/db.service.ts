@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 @Injectable({ providedIn: 'root' })
 export class DbService {
   private dbName = 'TarefasDB';
-  private storeName = 'tarefas';
+  private tarefasStore = 'tarefas';
   private db: IDBDatabase | null = null;
   private dbReady: Promise<void> | null = null;
 
@@ -26,8 +26,8 @@ export class DbService {
       
       request.onupgradeneeded = (event: any) => {
         const db = event.target.result;
-        if (!db.objectStoreNames.contains(this.storeName)) {
-          db.createObjectStore(this.storeName, { keyPath: 'id', autoIncrement: true });
+        if (!db.objectStoreNames.contains(this.tarefasStore)) {
+          db.createObjectStore(this.tarefasStore, { keyPath: 'id', autoIncrement: true });
         }
       };
       
@@ -59,8 +59,8 @@ export class DbService {
         return;
       }
       return new Promise((resolve, reject) => {
-        const transaction = db.transaction([this.storeName], 'readwrite');
-        const store = transaction.objectStore(this.storeName);
+        const transaction = db.transaction([this.tarefasStore], 'readwrite');
+        const store = transaction.objectStore(this.tarefasStore);
         const addRequest = store.add(tarefa);
         
         transaction.oncomplete = () => {
@@ -84,8 +84,8 @@ export class DbService {
         return [];
       }
       return new Promise((resolve, reject) => {
-        const transaction = db.transaction([this.storeName], 'readonly');
-        const store = transaction.objectStore(this.storeName);
+        const transaction = db.transaction([this.tarefasStore], 'readonly');
+        const store = transaction.objectStore(this.tarefasStore);
         const request = store.getAll();
         request.onsuccess = () => {
           const tarefas = request.result;
@@ -111,8 +111,8 @@ export class DbService {
         return;
       }
       return new Promise((resolve, reject) => {
-        const transaction = db.transaction([this.storeName], 'readwrite');
-        const store = transaction.objectStore(this.storeName);
+        const transaction = db.transaction([this.tarefasStore], 'readwrite');
+        const store = transaction.objectStore(this.tarefasStore);
         const deleteRequest = store.delete(id);
         
         transaction.oncomplete = () => resolve();
@@ -134,8 +134,8 @@ export class DbService {
         return;
       }
       return new Promise((resolve, reject) => {
-        const transaction = db.transaction([this.storeName], 'readwrite');
-        const store = transaction.objectStore(this.storeName);
+        const transaction = db.transaction([this.tarefasStore], 'readwrite');
+        const store = transaction.objectStore(this.tarefasStore);
         const updateRequest = store.put(tarefa);
         
         transaction.oncomplete = () => resolve();
