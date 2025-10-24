@@ -40,7 +40,18 @@ export class MainComponent implements OnInit {
       }
     });
 
-    this.carregarTarefas();
+    this.carregarTarefasInicial();
+  }
+
+  carregarTarefasInicial() {
+    this.dbService.getTarefas()
+      .then(tarefas => {
+        this.tarefas = tarefas || [];
+      })
+      .catch(error => {
+        console.error('Erro ao carregar tarefas:', error);
+        this.tarefas = [];
+      });
   }
 
   get filteredTarefas() {
