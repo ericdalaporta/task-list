@@ -1,0 +1,44 @@
+<div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem;">
+  <h1 class="fw-bold" style="font-size: 3.19rem; margin: 0;">Meu quadro de tarefas</h1>
+</div>
+
+<form class="d-flex gap-2 mb-4" (ngSubmit)="adicionarTarefa()" style="gap: 0.231rem;">
+  <input
+    type="text"
+    class="form-control"
+    placeholder="Adicionar tarefa"
+    name="novaTarefa"
+    [(ngModel)]="novaTarefa"
+    required
+    style="font-size: 1.155rem; padding: 0.63rem 1.05rem; flex: 1;"
+  >
+  <select class="form-select" style="max-width: 173.25px; font-size: 1.155rem; padding: 0.63rem 1.05rem;" name="categoriaSelecionada" [(ngModel)]="categoriaSelecionada">
+    <option *ngFor="let cat of categorias">{{ cat }}</option>
+  </select>
+  <button class="btn btn-outline-secondary" type="button" (click)="openAddCategoryModal()" title="Adicionar nova categoria" style="font-size: 1.155rem; padding: 0.63rem 1.575rem; border-color: #ccc; color: #333;">+ Categoria</button>
+  <button class="btn btn-outline-secondary" type="submit" style="font-size: 1.155rem; padding: 0.63rem 1.575rem; border-color: #ccc; color: #333;">+ Tarefa</button>
+</form>
+
+<div class="d-flex flex-column align-items-center justify-content-center" style="height: 50vh; padding-top: 4rem;" *ngIf="filteredTarefas.length === 0">
+  <img src="sem-tarefa.png" alt="sem tarefas" class="mb-3" style="width: 200px; filter: brightness(1.2) drop-shadow(0 4px 12px rgba(147, 112, 219, 0.5));">
+  <div class="text-muted fs-5" style="font-size: 1.21rem;">Nenhuma tarefa adicionada 🥲</div>
+</div>
+
+<div *ngIf="filteredTarefas.length > 0" cdkDropList (cdkDropListDropped)="drop($event)" class="tasks-list">
+  <div *ngFor="let tarefa of filteredTarefas" class="mb-3" cdkDrag>
+    <app-task-item 
+      [tarefa]="tarefa" 
+      (onRemove)="removerTarefa($event)" 
+      (onUpdate)="atualizarTarefa($event)"
+      (onEditCategories)="abrirModalEdicaoCategoria($event)">
+    </app-task-item>
+  </div>
+</div>
+
+<!-- editar as categorias o mini modal -->
+<app-category-modal 
+  *ngIf="mostrarModalCategorias && tarefaSelecionadaParaEditar"
+  [tarefa]="tarefaSelecionadaParaEditar"
+  (onSave)="salvarCategorias($event)"
+  (onClose)="fecharModalCategorias()">
+</app-category-modal>

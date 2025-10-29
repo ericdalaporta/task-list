@@ -1,0 +1,28 @@
+.tasks-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.cdk-drop-list-dragging .mb-3:not(.cdk-drag-placeholder) {
+  transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
+}
+
+.cdk-drag-preview {
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+  border-radius: 4px;
+  opacity: 0.95;
+}
+
+.cdk-drag-placeholder {
+  opacity: 0.2;
+  background: #f0f0f0;
+  border-radius: 4px;
+  min-height: 60px;
+}
+
+:host {
+  display: block;
+}
+
+

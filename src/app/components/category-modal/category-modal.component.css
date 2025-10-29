@@ -1,0 +1,179 @@
+/*estilizacao do modal pra ficar escuro o fundo e ficar no meio estiloso*/
+.modal-overlay {
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background-color: rgba(0, 0, 0, 0.4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  animation: fadeIn 0.3s ease-in-out;
+}
+
+/* animacao pra surgir o modal de add categorias*/
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+@keyframes slideUp {
+  from { transform: translateY(10px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+
+/*estilizacao do modal*/
+.modal-content-slim {
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15);
+  width: 90%;
+  max-width: 500px;
+  display: flex;
+  flex-direction: column;
+  max-height: 85vh;
+  animation: slideUp 0.3s ease-in-out;
+}
+
+/* header do modal ficar arrumado */
+.modal-header-slim {
+  padding: 1.2rem 1.5rem;
+  border-bottom: 1px solid #e9ecef;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-shrink: 0;
+}
+
+/* conserto do botão de fechar */
+.close-btn {
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  color: #999;
+}
+
+/* organizacao do modal*/
+.modal-body-slim {
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+}
+
+/* titulo de disponiveis e selecionadas */
+.categories-section {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+
+.section-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/*estilo do texto de disponiveis e selecionados*/
+.section-label {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: #666;
+  text-transform: uppercase;
+}
+
+.section-count {
+  font-size: 0.8rem;
+  background: #f0f0f0;
+  padding: 0.2rem 0.6rem;
+  border-radius: 4px;
+  color: #999;
+}
+
+/* areas de drop */
+.drop-zone {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+  min-height: 100px;
+  padding: 1rem;
+  border: 2px dashed #e0e0e0;
+  border-radius: 8px;
+  background-color: #fafbfc;
+  transition: all 0.2s ease;
+  align-content: flex-start;
+}
+
+/* deixando os badges com estilo */
+.category-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 0.8rem;
+  border-radius: 20px;
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: white;
+  cursor: grab;
+  transition: all 0.2s ease;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  white-space: nowrap;
+}
+
+/*botao de remover os badges*/
+.badge-label { flex: 1; }
+.badge-remove {
+  background: none;
+  border: none;
+  color: inherit;
+  font-size: 0.9rem;
+}
+
+/* textinho se estiver sem nd */
+.empty-state {
+  text-align: center;
+  color: #bbb;
+  font-size: 0.85rem;
+  margin: 2rem 0;
+  font-style: italic;
+}
+
+/* "arrastr as cat.." */
+.help-text {
+  font-size: 0.75rem;
+  color: #999;
+  text-align: center;
+  margin-top: 0.5rem;
+}
+
+/* footer do modal */
+.modal-footer-slim {
+  padding: 1rem 1.5rem;
+  border-top: 1px solid #e9ecef;
+  display: flex;
+  justify-content: flex-end; 
+  gap: 0.8rem;
+}
+
+/* o cancelar e salvar */
+.btn-cancel,
+.btn-save {
+  padding: 0.5rem 1.2rem;
+  border: none;
+  border-radius: 6px;
+  font-size: 0.9rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.btn-cancel {
+  background: #f0f0f0;
+  color: #666;
+}
+
+.btn-cancel:hover { 
+  background: #e0e0e0; 
+}
+
+.btn-save {
+  background: #0d6efd;
+  color: white;
+}
