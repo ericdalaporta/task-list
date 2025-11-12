@@ -1,0 +1,64 @@
+<div class="card-tarefa p-3 border rounded" [ngClass]="{'tarefa-completa': tarefa.completa}" cdkDragHandle style="cursor: grab;">
+  <div class="linha-principal">
+    <div class="secao-checkbox-titulo">
+      <div class="form-check">
+        <input 
+          class="form-check-input checkbox-tarefa" 
+          type="checkbox" 
+          [checked]="tarefa.completa"
+          (change)="alternarConclusao()"
+          [id]="'checkbox-' + tarefa.id"
+        >
+        <label class="form-check-label" [for]="'checkbox-' + tarefa.id"></label>
+      </div>
+
+      <div class="container-titulo">
+        <div *ngIf="!estaEmModoEdicao" [ngClass]="{'titulo-riscado': tarefa.completa}">
+          <h5 class="titulo-texto">{{ tarefa.titulo }}</h5>
+        </div>
+
+        <div *ngIf="estaEmModoEdicao">
+          <div class="linha-edicao">
+            <input 
+              type="text" 
+              class="input-edicao" 
+              [(ngModel)]="tituloTemporario"
+              (keyup.enter)="salvarEdicaoTitulo()"
+              (keyup.escape)="cancelarEdicaoTitulo()"
+              placeholder="Editar título"
+            >
+            <button class="botao-salvar" (click)="salvarEdicaoTitulo()">Salvar</button>
+            <button class="botao-cancelar" (click)="cancelarEdicaoTitulo()">Cancelar</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="secao-acoes">
+      <i class="bi bi-clock icone-acao" (click)="abrirModalPrazo()" title="Definir prazo"></i>
+      <i class="bi bi-pen icone-acao" (click)="iniciarEdicaoTitulo()" title="Editar título"></i>
+      <i class="bi bi-tag icone-acao" (click)="abrirModalEditarCategorias()" title="Editar categorias"></i>
+      <i class="bi bi-trash icone-acao" (click)="remover()" title="Deletar tarefa"></i>
+    </div>
+  </div>
+
+  <div class="container-badges">
+    <span *ngIf="tarefa.prazo" class="badge badge-prazo rounded-pill text-white" style="margin-right: 0.5rem;">
+      <i class="bi bi-clock" style="margin-right: 0.3rem;"></i>Válido até {{ tarefa.prazo.data | date: 'dd/MM' }} {{ tarefa.prazo.hora }}
+    </span>
+
+    <span *ngFor="let categoria of tarefa.categorias"
+          class="badge rounded-pill text-white"
+          [ngClass]="obterClasseBadgeCategoria(categoria)">
+      {{ categoria }}
+    </span>
+  </div>
+
+  <app-modal-prazo
+    *ngIf="modalPrazoVisivel"
+    [tarefa]="tarefa"
+    (aoSalvar)="salvarPrazo($event)"
+    (aoLimpar)="removerPrazo()"
+    (aoFechar)="fecharModalPrazo()">
+  </app-modal-prazo>
+</div>

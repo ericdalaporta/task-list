@@ -1,0 +1,30 @@
+<div class="superposicao-modal" (click)="fechar()">
+  <div class="conteudo-modal" (click)="$event.stopPropagation()">
+    <div class="cabecalho-modal">
+      <h4>Adicionar Categoria</h4>
+      <button class="botao-fechar" (click)="fechar()">✕</button>
+    </div>
+
+    <div class="corpo-modal">
+      <div style="margin-bottom: 1.5rem;">
+        <label for="nomeCategoria" style="display: block; margin-bottom: 0.8rem; font-weight: 600; color: #333; font-size: 0.95rem;">
+          Nome da Categoria
+        </label>
+        <input
+          id="nomeCategoria"
+          type="text"
+          class="form-control"
+          placeholder="Digite o nome"
+          [(ngModel)]="nomeCategoria"
+          (keyup.enter)="adicionarCategoria()"
+          style="font-size: 1rem; padding: 0.63rem 1.05rem; box-shadow: 0 2px 4px rgba(0,0,0,0.1); border-color: #dee2e6; background-color: white;"
+        >
+      </div>
+    </div>
+
+    <div class="rodape-modal">
+      <button class="botao-cancelar" (click)="fechar()">Cancelar</button>
+      <button class="botao-salvar" (click)="adicionarCategoria()">Adicionar</button>
+    </div>
+  </div>
+</div>

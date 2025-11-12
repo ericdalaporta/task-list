@@ -1,0 +1,64 @@
+<!-- superposição do modal que fecha ao clicar fora do conteúdo -->
+<div class="superposicao-modal" (click)="fechar()">
+  <!-- conteúdo do modal (não fecha ao clicar dentro) -->
+  <div class="conteudo-modal" (click)="$event.stopPropagation()">
+    <div class="cabecalho-modal">
+      <h4>Categorias de {{ tarefa.titulo }}</h4>
+      <button class="botao-fechar" (click)="fechar()">✕</button>
+    </div>
+
+    <div class="corpo-modal">
+      <div class="secao-categorias">
+        <label class="rotulo-secao">Disponíveis</label>
+        <div cdkDropList id="disponiveis" #listaDisponivel="cdkDropList" [cdkDropListData]="categoriasParaAdicionar"
+          [cdkDropListSortingDisabled]="true" [cdkDropListConnectedTo]="[listaAtribuida]"
+          (cdkDropListDropped)="aoSoltarCategoria($event)" class="zona-soltura">
+
+          <span *ngFor="let cat of categoriasParaAdicionar" cdkDrag class="badge-categoria text-white"
+            [style.backgroundColor]="obterCorCategoria(cat)">
+            {{ cat }}
+          </span>
+
+          <p *ngIf="categoriasParaAdicionar.length === 0" class="estado-vazio">
+            Tudo adicionado!
+          </p>
+        </div>
+      </div>
+
+      <div class="secao-categorias">
+        <div class="cabecalho-secao">
+          <label class="rotulo-secao">Selecionadas</label>
+          <span class="contador-secao">{{ categoriasAtribuidasATarefa.length }}/{{ 3 }}</span>
+        </div>
+
+        <div cdkDropList id="selecionadas" #listaAtribuida="cdkDropList" [cdkDropListData]="categoriasAtribuidasATarefa"
+          [cdkDropListConnectedTo]="[listaDisponivel]" (cdkDropListDropped)="aoSoltarCategoria($event)"
+          class="zona-soltura">
+
+          <span *ngFor="let cat of categoriasAtribuidasATarefa; let i = index" cdkDrag
+            class="badge-categoria text-white"
+            [style.backgroundColor]="obterCorCategoria(cat)">
+            <span class="rotulo-badge">{{ cat }}</span>
+            <button class="botao-remover-badge"
+              (click)="categoriasAtribuidasATarefa.splice(i, 1); atualizarCategoriasDisponiveis(); $event.stopPropagation()" title="Remover">
+              ✕
+            </button>
+          </span>
+
+          <p *ngIf="categoriasAtribuidasATarefa.length === 0" class="estado-vazio">
+            Arraste categorias para cá
+          </p>
+        </div>
+      </div>
+
+      <div class="texto-ajuda">
+        Arraste categorias entre as áreas. Máximo 3 por tarefa.
+      </div>
+    </div>
+
+    <div class="rodape-modal">
+      <button class="botao-cancelar" (click)="fechar()">Cancelar</button>
+      <button class="botao-salvar" [disabled]="categoriasAtribuidasATarefa.length === 0" (click)="salvar()">Salvar</button>
+    </div>
+  </div>
+</div>

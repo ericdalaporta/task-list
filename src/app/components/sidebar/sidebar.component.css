@@ -1,0 +1,32 @@
+:host {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  width: 100%;
+}
+
+.container-barra {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  width: 100%;
+}
+
+.secao-categorias {
+  flex: 1;
+  overflow-y: auto;
+}
+
+.item-categoria {
+  transition: color 0.3s ease;
+  cursor: pointer;
+}
+
+.item-categoria:hover {
+  color: #9370db !important;
+  font-weight: bold;
+}
+
+.container-badges {
+  margin-top: auto;
+}
