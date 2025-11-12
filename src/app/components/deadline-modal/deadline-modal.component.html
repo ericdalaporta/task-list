@@ -1,0 +1,50 @@
+<!-- Superposição do modal que fecha ao clicar fora do conteúdo -->
+<div class="superposicao-modal" (click)="fechar()">
+  <!-- Conteúdo do modal (não fecha ao clicar dentro) -->
+  <div class="conteudo-modal" (click)="$event.stopPropagation()">
+    <!-- Cabeçalho do modal com título e botão de fechar -->
+    <div class="cabecalho-modal">
+      <h4>Definir Prazo da Tarefa</h4>
+      <button class="botao-fechar" (click)="fechar()">✕</button>
+    </div>
+
+    <!-- Corpo do modal -->
+    <div class="corpo-modal">
+      <!-- Campo de Data -->
+      <div style="margin-bottom: 1.5rem;">
+        <label for="dataPrazo" style="display: block; margin-bottom: 0.8rem; font-weight: 600; color: #333; font-size: 0.95rem;">
+          Data
+        </label>
+        <input
+          id="dataPrazo"
+          type="date"
+          class="form-control"
+          [(ngModel)]="dataSelecionada"
+          style="font-size: 1rem; padding: 0.63rem 1.05rem; box-shadow: 0 2px 4px rgba(0,0,0,0.1); border-color: #dee2e6; background-color: white;"
+        >
+      </div>
+
+      <!-- Campo de Hora -->
+      <div style="margin-bottom: 1.5rem;">
+        <label for="horaPrazo" style="display: block; margin-bottom: 0.8rem; font-weight: 600; color: #333; font-size: 0.95rem;">
+          Hora
+        </label>
+        <input
+          id="horaPrazo"
+          type="time"
+          class="form-control"
+          [(ngModel)]="horaSelecionada"
+          style="font-size: 1rem; padding: 0.63rem 1.05rem; box-shadow: 0 2px 4px rgba(0,0,0,0.1); border-color: #dee2e6; background-color: white;"
+        >
+      </div>
+    </div>
+
+    <!-- Rodapé do modal com botões de ação -->
+    <div class="rodape-modal">
+      <!-- Botão cancelar (fecha sem salvar) -->
+      <button class="botao-cancelar" (click)="fechar()">Cancelar</button>
+      <!-- Botão salvar (para definir o prazo) -->
+      <button class="botao-salvar" (click)="salvar()">Salvar</button>
+    </div>
+  </div>
+</div>

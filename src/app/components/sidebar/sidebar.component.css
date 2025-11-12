@@ -1,0 +1,41 @@
+/* ════════════════════════════════════════════════════════════
+   ESTILOS DO COMPONENTE BARRA LATERAL
+   ════════════════════════════════════════════════════════════ */
+
+:host {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  width: 100%;
+}
+
+/* Container principal da barra lateral */
+.container-barra {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  width: 100%;
+}
+
+/* Seção de categorias - ocupa todo o espaço disponível */
+.secao-categorias {
+  flex: 1;
+  overflow-y: auto;
+}
+
+/* Item individual de categoria - clicável */
+.item-categoria {
+  transition: color 0.3s ease;
+  cursor: pointer;
+}
+
+/* Efeito hover em categoria para melhor UX */
+.item-categoria:hover {
+  color: #9370db !important;
+  font-weight: bold;
+}
+
+/* Container de badges de categorias no rodapé */
+.container-badges {
+  margin-top: auto;
+}

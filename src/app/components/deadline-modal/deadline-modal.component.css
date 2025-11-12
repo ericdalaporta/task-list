@@ -1,0 +1,111 @@
+/* 
+  CSS DO COMPONENTE MODAL DE PRAZO
+  Modal para definir deadline/prazo de tarefas com estilo padronizado
+  Estilização: fundo escuro, modal centralizado, animações suaves
+*/
+
+/* superposicao-modal: Camada de fundo semi-transparente que cobre toda a tela */
+.superposicao-modal {
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background-color: rgba(0, 0, 0, 0.4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  animation: desvanecer 0.3s ease-in-out;
+}
+
+/* Animação de aparecimento: fundo se desvanece para visível */
+@keyframes desvanecer {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+/* Animação de deslizamento: modal desliza para cima com opacidade */
+@keyframes deslizarParaCima {
+  from { transform: translateY(10px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+
+/* conteudo-modal: Container principal do modal com estilo clean e sombra */
+.conteudo-modal {
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15);
+  width: 90%;
+  max-width: 450px;
+  display: flex;
+  flex-direction: column;
+  animation: deslizarParaCima 0.3s ease-in-out;
+}
+
+/* cabecalho-modal: Topo do modal com título e botão de fechar */
+.cabecalho-modal {
+  padding: 1.2rem 1.5rem;
+  border-bottom: 1px solid #e9ecef;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-shrink: 0;
+}
+
+/* botao-fechar: Botão para fechar o modal (X) */
+.botao-fechar {
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  color: #999;
+  cursor: pointer;
+}
+
+/* corpo-modal: Área principal com o formulário de entrada */
+.corpo-modal {
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+}
+
+/* rodape-modal: Seção inferior com botões de ação (Cancelar/Salvar) */
+.rodape-modal {
+  padding: 1rem 1.5rem;
+  border-top: 1px solid #e9ecef;
+  display: flex;
+  justify-content: flex-end; 
+  gap: 0.8rem;
+  flex-shrink: 0;
+}
+
+/* botao-cancelar: Botão para fechar o modal sem salvar alterações */
+.botao-cancelar {
+  padding: 0.5rem 1.2rem;
+  border: none;
+  border-radius: 6px;
+  font-size: 0.9rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  background: #f0f0f0;
+  color: #666;
+}
+
+.botao-cancelar:hover { 
+  background: #e0e0e0; 
+}
+
+/* botao-salvar: Botão para confirmar e definir o prazo */
+.botao-salvar {
+  padding: 0.5rem 1.2rem;
+  border: none;
+  border-radius: 6px;
+  font-size: 0.9rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  background: #0d6efd;
+  color: white;
+}
+
+.botao-salvar:hover {
+  background: #0b5ed7;
+}
