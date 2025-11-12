@@ -1,8 +1,7 @@
 <div align="center">
 
-# 🧠 Meu Quadro de Tarefas  
-### Um programa leve e eficiente feito em Angular com IndexedDB 
-
+# 🧠 Lista de tarefas coletiva
+### Um programa leve e eficiente feito em Angular com IndexedDB. É um projeto feito pra quem quer gerenciar tarefas em um grupo de pessoas, seja num ambiente familiar, empresarial ou para um projeto simples. 
 ![Demo do Aplicativo](public/gif-task.gif)
 
 </div>
@@ -35,26 +34,6 @@ Acesse: `http://localhost:4200`
 | **Angular CDK** | Função de drag & drop |
 | **IndexedDB** | Armazenamento local |
 
----
- 
-
-## 📁 Estrutura
-
-```
-src/
-├── app/
-│   ├── components/
-│   │   ├── main/
-│   │   ├── sidebar/
-│   │   ├── task-item/
-│   │   └── category-modal/
-│   ├── services/
-│   │   ├── db.service.ts
-│   │   └── category.service.ts
-│   └── ...
-├── styles.css
-└── index.html
-```
 
  
 
