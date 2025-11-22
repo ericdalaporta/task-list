@@ -1,0 +1,14 @@
+<div class="container-fluid" style="min-height: 100vh; padding: 0; background-color: transparent;">
+  <div class="row g-0" style="min-height: 100vh;">
+
+    <div class="col-md-3"
+      style="background-color: #f8f9fa; border-right: 1px solid #dee2e6; display: flex; flex-direction: column; justify-content: flex-start; padding: 2.2rem; padding-top: 3.3rem; min-width: 220px; overflow-y: auto; position: fixed; left: 0; top: 0; height: 100vh; width: 25%;">
+      <app-barra (aoCategoriaSelecionada)="aoCategoriaSelecionada($event)"></app-barra>
+    </div>
+
+    <div class="col-md-9"
+      style="padding: 2.2rem; overflow-y: auto; position: relative; background-color: transparent; margin-left: 25%;">
+      <app-principal [categoriaSelecionada]="categoriaSelecionada"></app-principal>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,142 @@
+.superposicao-modal {
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background-color: rgba(0, 0, 0, 0.4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  animation: desvanecer 0.3s ease-in-out;
+}
+
+@keyframes desvanecer {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes deslizarParaCima {
+  from { transform: translateY(10px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+
+.conteudo-modal {
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15);
+  width: 90%;
+  max-width: 450px;
+  display: flex;
+  flex-direction: column;
+  animation: deslizarParaCima 0.3s ease-in-out;
+}
+
+.cabecalho-modal {
+  padding: 1.2rem 1.5rem;
+  border-bottom: 1px solid #e9ecef;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-shrink: 0;
+}
+
+.botao-fechar {
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  color: #999;
+  cursor: pointer;
+}
+
+.corpo-modal {
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.grupo-campos {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  margin-bottom: 1.25rem;
+}
+
+.grupo-campos label {
+  font-weight: 600;
+  color: #333;
+  font-size: 0.95rem;
+}
+
+.grade-temporal {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.75rem;
+}
+
+.corpo-modal .form-control,
+.corpo-modal .form-select {
+  font-size: 1rem;
+  padding: 0.63rem 1.05rem;
+  border: 1px solid #dee2e6;
+  border-radius: 10px;
+  box-shadow: 0 2px 8px rgba(15, 23, 42, 0.08);
+}
+
+.rodape-modal {
+  padding: 1rem 1.5rem;
+  border-top: 1px solid #e9ecef;
+  display: flex;
+  justify-content: space-between; 
+  align-items: center;
+  gap: 0.8rem;
+  flex-shrink: 0;
+}
+
+.botao-texto {
+  background: none;
+  border: none;
+  color: #8b5cf6;
+  font-weight: 600;
+  cursor: pointer;
+  transition: color 0.2s ease;
+}
+
+.botao-texto:hover {
+  color: #6d28d9;
+}
+
+.acoes-rodape {
+  display: flex;
+  gap: 0.8rem;
+}
+
+.botao-cancelar {
+  padding: 0.5rem 1.2rem;
+  border: none;
+  border-radius: 6px;
+  font-size: 0.9rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  background: #f0f0f0;
+  color: #666;
+}
+
+.botao-cancelar:hover { 
+  background: #e0e0e0; 
+}
+
+.botao-salvar {
+  padding: 0.5rem 1.2rem;
+  border: none;
+  border-radius: 6px;
+  font-size: 0.9rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  background: #0d6efd;
+  color: white;
+}
+
+.botao-salvar:hover {
+  background: #0b5ed7;
+}

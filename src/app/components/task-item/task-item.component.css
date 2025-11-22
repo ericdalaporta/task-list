@@ -1,0 +1,209 @@
+
+.card-tarefa {
+  padding: 1.8rem 1.85rem;
+  border-radius: 20px;
+  border: 1px solid #e7e9f3;
+  background-color: #fff;
+  box-shadow: 0 20px 45px rgba(15, 23, 42, 0.08);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  position: relative;
+}
+
+.card-tarefa:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 28px 60px rgba(15, 23, 42, 0.12);
+  cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="%236c6c6f" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M1 8a.5.5 0 0 1 .5-.5h13a.5.5 0 0 1 0 1h-13A.5.5 0 0 1 1 8M7.646.146a.5.5 0 0 1 .708 0l2 2a.5.5 0 0 1-.708.708L8.5 1.707V5.5a.5.5 0 0 1-1 0V1.707L6.354 2.854a.5.5 0 1 1-.708-.708zM8 10a.5.5 0 0 1 .5.5v3.793l1.146-1.147a.5.5 0 0 1 .708.708l-2 2a.5.5 0 0 1-.708 0l-2-2a.5.5 0 0 1 .708-.708L7.5 14.293V10.5A.5.5 0 0 1 8 10"/></svg>') 10 10, auto;
+}
+
+
+
+.card-tarefa:active {
+  cursor: grabbing;
+}
+
+.tarefa-completa {
+  background-color: #fff;
+  opacity: 0.6;
+}
+
+.linha-principal {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 1.25rem;
+}
+
+.secao-checkbox-titulo {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+  flex: 1;
+}
+
+.form-check {
+  margin: 0;
+  flex-shrink: 0;
+}
+
+.checkbox-tarefa {
+  cursor: pointer;
+  width: 1.8rem;
+  height: 1.8rem;
+  margin: 0;
+  flex-shrink: 0;
+}
+
+.checkbox-tarefa:checked {
+  background-color: #8b5cf6;
+  border-color: #8b5cf6;
+}
+
+.container-titulo {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.linha-badges {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-top: 0.9rem;
+  margin-left: 1.8rem;
+  flex-wrap: wrap;
+}
+
+.titulo-texto {
+  margin: 0;
+  font-size: 1.6rem;
+  font-weight: 600;
+  line-height: 1.35;
+}
+
+.titulo-riscado {
+  text-decoration: line-through;
+  color: #8b5cf6;
+}
+
+.badge {
+  user-select: none;
+  transition: opacity 0.2s ease;
+  font-size: 1rem !important;
+  padding: 0.6rem 1.2rem !important;
+}
+
+.badge-prazo {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  background: linear-gradient(135deg, #d1d5db 0%, #a1a5ad 100%);
+  box-shadow: 0 12px 25px rgba(161, 165, 173, 0.3);
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.badge-prazo-vencido {
+  background: linear-gradient(135deg, #ef4444 0%, #b91c1c 100%);
+  box-shadow: 0 12px 25px rgba(185, 28, 28, 0.4);
+}
+
+.container-badges {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.55rem;
+}
+
+.prazo-wrapper {
+  display: flex;
+}
+
+.secao-acoes {
+  display: flex;
+  gap: 0.85rem;
+  flex-shrink: 0;
+}
+
+.icone-acao {
+  cursor: pointer;
+  font-size: 1.5rem;
+  color: #6c6c6f;
+  transition: color 0.2s ease, transform 0.2s ease;
+}
+
+.icone-acao:hover {
+  color: #8b5cf6;
+  transform: scale(1.1);
+}
+
+.linha-edicao {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  width: 100%;
+}
+
+.input-edicao {
+  flex: 1;
+  min-width: 150px;
+  padding: 0 0.5rem;
+  font-size: 1.6rem;
+  border: none;
+  border-bottom: 2px solid rgba(168, 85, 247, 0.6);
+  border-radius: 0;
+  font-weight: 600;
+  background-color: transparent;
+  transition: border-color 0.2s ease, background-color 0.2s ease;
+  color: #333;
+  line-height: 1.35;
+}
+
+.input-edicao::placeholder {
+  color: #999;
+}
+
+.input-edicao:focus {
+  outline: none;
+  border-bottom-color: #8b5cf6;
+  background-color: rgba(168, 85, 247, 0.03);
+}
+
+.botao-salvar,
+.botao-cancelar {
+  padding: 0.5rem 1rem;
+  font-size: 0.85rem;
+  font-weight: 600;
+  border: none;
+  border-radius: 4px;
+  transition: all 0.2s ease;
+  flex-shrink: 0;
+}
+
+.botao-salvar {
+  background-color: rgba(168, 85, 247, 0.6);
+  color: #fff;
+  cursor: not-allowed;
+}
+
+.botao-salvar.ativo {
+  background-color: #8b5cf6;
+  cursor: pointer;
+}
+
+.botao-salvar.ativo:hover {
+  background-color: #7c3aed;
+}
+
+.botao-cancelar {
+  background-color: #e9ecef;
+  color: #495057;
+}
+
+.botao-cancelar:hover {
+  background-color: #dee2e6;
+}
+
+.cdk-drag:active,
+.card-tarefa:active {
+  cursor: grabbing;
+}

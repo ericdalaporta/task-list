@@ -1,0 +1,145 @@
+<div *ngIf="mostrarAvisoLimpezaSemanal" style="background-color: #dcfce7; border: 1px solid #86efac; border-radius: 8px; padding: 1rem; margin-bottom: 1.5rem; color: #15803d; font-weight: 600; display: flex; align-items: center; gap: 0.5rem; animation: desvanecer 0.3s ease-in-out;">
+  <i class="bi bi-check-circle-fill"></i>
+  ✨ Suas tarefas foram limpas! Uma nova semana começou. Boa sorte!
+</div>
+
+<div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem; gap: 1rem;">
+  <h1 class="fw-bold"
+    style="font-size: 3.19rem; margin: 0; font-family: 'Inter', 'Segoe UI', sans-serif; font-weight: 700;">Lista de
+    Tarefas<span *ngIf="nomeUsuario" style="color: #000;"> de </span><span *ngIf="nomeUsuario" class="nome-usuario" style="font-size: 1em; font-weight: 700;">{{ nomeUsuario }}</span></h1>
+  <button class="btn btn-outline-secondary" type="button" (click)="abrirModalPontuacao()"
+    style="font-size: 1.155rem; padding: 0.63rem 2.175rem; border-color: #ccc; color: #333; box-shadow: 0 2px 4px rgba(0,0,0,0.1); transition: all 0.2s ease; display: flex; align-items: center; gap: 0.5rem;">
+    Pontuação
+    <i class="bi bi-bar-chart-line"></i>
+  </button>
+</div>
+
+<form class="d-flex gap-2 mb-4" (ngSubmit)="adicionarTarefa()" style="gap: 0.5rem; flex-wrap: wrap; align-items: center;" novalidate>
+  <input type="text" class="form-control" placeholder="Adicionar tarefa" name="novaTarefaTexto"
+    [(ngModel)]="novaTarefaTexto"
+    style="flex: 1; min-width: 200px; font-size: 1.155rem; padding: 0.63rem 1.05rem; box-shadow: 0 2px 4px rgba(0,0,0,0.1); border-color: #ccc;">
+  <select class="form-select"
+    style="max-width: 173.25px; font-size: 1.155rem; padding: 0.63rem 1.05rem; box-shadow: 0 2px 4px rgba(0,0,0,0.1); border-color: #ccc;"
+    name="categoriaSelecionadaAdicionarTarefa" [(ngModel)]="categoriaSelecionadaAdicionarTarefa">
+    <option disabled [ngValue]="null">Categoria</option>
+    <option *ngFor="let cat of categorias" [ngValue]="cat">{{ cat }}</option>
+  </select>
+  <select class="form-select"
+    style="max-width: 190px; font-size: 1.155rem; padding: 0.63rem 1.05rem; box-shadow: 0 2px 4px rgba(0,0,0,0.1); border-color: #ccc;"
+    name="diaSemanaSelecionadoAdicionarTarefa" [(ngModel)]="diaSemanaSelecionadoAdicionarTarefa">
+    <option value="">Dia da semana</option>
+    <option *ngFor="let dia of diasSemana" [ngValue]="dia.valor">{{ dia.rotulo }}</option>
+  </select>
+  <input type="time" class="form-control" name="horariosAdicionarTarefa" [(ngModel)]="horariosAdicionarTarefa"
+    style="max-width: 150px; font-size: 1.155rem; padding: 0.63rem 1.05rem; box-shadow: 0 2px 4px rgba(0,0,0,0.1); border-color: #ccc;">
+  <button class="btn btn-outline-secondary" type="button" (click)="abrirModalAdicionarCategoria()"
+    title="Adicionar nova categoria"
+    style="font-size: 1.155rem; padding: 0.63rem 2.175rem; border-color: #ccc; color: #333; box-shadow: 0 2px 4px rgba(0,0,0,0.1); transition: all 0.2s ease;">+
+    Categoria</button>
+</form>
+
+<small style="display: block; color: #9370DB; font-size: 0.85rem; font-weight: 500; margin-bottom: 1.5rem;">
+  Aperte enter pra adicionar
+</small>
+
+<div class="d-flex flex-column align-items-center justify-content-center" style="height: 50vh; padding-top: 4rem;"
+  *ngIf="tarefasFiltradas.length === 0">
+  <img src="sem-tarefa.png" alt="sem tarefas" class="mb-3"
+    style="width: 200px; filter: brightness(1.2) drop-shadow(0 4px 12px rgba(147, 112, 219, 0.5));">
+  <div class="text-muted fs-5" style="font-size: 1.21rem;">Nenhuma tarefa adicionada </div>
+</div>
+
+<div *ngIf="tarefasFiltradas.length > 0" cdkDropList (cdkDropListDropped)="aoSoltarTarefa($event)"
+  class="lista-tarefas"
+  style="display: flex; flex-direction: column; gap: 0.8rem;">
+  <div *ngFor="let tarefa of tarefasFiltradas" cdkDrag>
+    <app-item-tarefa [tarefa]="tarefa" (aoRemover)="removerTarefa($event)" (aoAtualizar)="atualizarTarefa($event)"
+      (aoEditarCategorias)="abrirModalEditarCategorias($event)">
+    </app-item-tarefa>
+  </div>
+</div>
+
+<app-modal-categorias *ngIf="mostrarModalEditarCategorias && tarefaSelecionadaParaEditarCategorias"
+  [tarefa]="tarefaSelecionadaParaEditarCategorias" (aoSalvar)="salvarCategoriasDaTarefa($event)"
+  (aoFechar)="fecharModalEditarCategorias()">
+</app-modal-categorias>
+
+<app-modal-adicionar-categoria *ngIf="mostrarModalAdicionarCategoria"
+  (aoAdicionarCategoria)="adicionarNovaCategoria($event)" (aoFechar)="fecharModalAdicionarCategoria()">
+</app-modal-adicionar-categoria>
+
+<!-- Modal de Pontuação -->
+<div class="superposicao-modal" *ngIf="mostrarModalPontuacao" (click)="fecharModalPontuacao()">
+  <div class="conteudo-modal-pontuacao" (click)="$event.stopPropagation()">
+    <div class="cabecalho-modal">
+      <h4>Sua Pontuação</h4>
+      <button class="botao-fechar" (click)="fecharModalPontuacao()">✕</button>
+    </div>
+
+    <div class="corpo-modal-pontuacao">
+      <div class="legenda-pontuacao">
+        <p class="legenda-item"><span class="legenda-numero">Número</span> = tarefas completas</p>
+        <p class="legenda-item"><span class="legenda-variacao">Variação</span> = aumento ou redução em relação ao dia anterior</p>
+      </div>
+      <div class="lista-pontuacao">
+        <div *ngFor="let dia of pontuacaoPorDia" class="item-pontuacao">
+          <div class="info-data">
+            <p class="data-texto">{{ formatarData(dia.data) }}</p>
+          </div>
+          <div class="info-pontos">
+            <p class="pontos-numero">{{ dia.pontos }}</p>
+            <p class="aumento-texto" [ngClass]="{'aumento-positivo': dia.aumento > 0, 'aumento-neutro': dia.aumento === 0, 'aumento-negativo': dia.aumento < 0}">
+              {{ dia.aumento > 0 ? '+' : '' }}{{ dia.aumento }}
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="rodape-modal">
+      <button class="botao-cancelar" (click)="fecharModalPontuacao()">Fechar</button>
+    </div>
+  </div>
+</div>
+
+<!-- Modal de Boas-vindas -->
+<div class="superposicao-modal" *ngIf="mostrarModalBoasVindas" (click)="fecharModalBoasVindas()">
+  <div class="conteudo-modal-boas-vindas" (click)="$event.stopPropagation()">
+    <div class="cabecalho-boas-vindas">
+      <h2>Bem-vindo à sua Lista de Tarefas!</h2>
+    </div>
+
+    <div class="corpo-boas-vindas">
+      <p style="color: #555; font-size: 1.15rem; text-align: center; margin: 0 0 1.5rem 0; line-height: 1.6;">
+        Esta é sua lista de tarefas pessoal. Aqui você pode organizar todas as suas atividades do dia a dia, definir em qual dia e horário quer fazer cada tarefa, e acompanhar seu progresso através do sistema de pontuação. Comece agora e organize sua vida de forma simples e eficiente!
+      </p>
+
+      <div style="background-color: #f8f9fa; border-left: 4px solid #9ca3af; padding: 1rem; border-radius: 6px; margin-bottom: 1.5rem;">
+        <p style="color: #555; font-size: 1.15rem; margin: 0; line-height: 1.5;">
+          <strong>Importante:</strong> Suas tarefas serão limpas todo domingo à noite para começar uma nova semana.
+        </p>
+      </div>
+
+      <div class="secao-nome">
+        <label for="nomeUsuarioInput" style="display: block; margin-bottom: 0.8rem; font-weight: 600; color: #333; text-align: center; font-size: 1.3rem;">
+          Como você se chama?
+        </label>
+        <input
+          id="nomeUsuarioInput"
+          type="text"
+          class="form-control"
+          [placeholder]="placeholderTexto"
+          [(ngModel)]="nomeUsuarioTemporario"
+          (keyup.enter)="salvarNomeUsuario()"
+          (focus)="aoClicarInput()"
+          (blur)="aoSairInput()"
+          style="font-size: 1.15rem; padding: 0.9rem 1.05rem; min-height: 3rem; box-shadow: 0 2px 4px rgba(0,0,0,0.1); border-color: #dee2e6; background-color: white; text-align: center;"
+        >
+      </div>
+    </div>
+
+    <div class="rodape-boas-vindas">
+      <button class="botao-comecar" (click)="salvarNomeUsuario()">Começar</button>
+    </div>
+  </div>
+</div>

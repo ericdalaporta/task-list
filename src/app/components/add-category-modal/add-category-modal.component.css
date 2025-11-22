@@ -1,0 +1,104 @@
+.superposicao-modal {
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background-color: rgba(0, 0, 0, 0.4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  animation: desvanecer 0.3s ease-in-out;
+}
+
+@keyframes desvanecer {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes deslizarParaCima {
+  from { transform: translateY(10px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+
+.conteudo-modal {
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15);
+  width: 90%;
+  max-width: 450px;
+  display: flex;
+  flex-direction: column;
+  animation: deslizarParaCima 0.3s ease-in-out;
+}
+
+.cabecalho-modal {
+  padding: 1.2rem 1.5rem;
+  border-bottom: 1px solid #e9ecef;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-shrink: 0;
+}
+
+.botao-fechar {
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  color: #999;
+  cursor: pointer;
+}
+
+.corpo-modal {
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.rodape-modal {
+  padding: 1rem 1.5rem;
+  border-top: 1px solid #e9ecef;
+  display: flex;
+  justify-content: flex-end; 
+  gap: 0.8rem;
+  flex-shrink: 0;
+}
+
+.botao-cancelar {
+  padding: 0.5rem 1.2rem;
+  border: none;
+  border-radius: 6px;
+  font-size: 0.9rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  background: #f0f0f0;
+  color: #666;
+}
+
+.botao-cancelar:hover { 
+  background: #e0e0e0; 
+}
+
+.botao-salvar {
+  padding: 0.5rem 1.2rem;
+  border: none;
+  border-radius: 6px;
+  font-size: 0.9rem;
+  font-weight: 500;
+  cursor: not-allowed;
+  transition: all 0.2s ease;
+  background: rgba(168, 85, 247, 0.6);
+  color: white;
+}
+
+.botao-salvar.ativo {
+  background: #8b5cf6;
+  cursor: pointer;
+}
+
+.botao-salvar.ativo:hover {
+  background: #7c3aed;
+}
+
+.botao-salvar:hover:not(.ativo) {
+  background: rgba(168, 85, 247, 0.6);
+}

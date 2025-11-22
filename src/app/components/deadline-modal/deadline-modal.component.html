@@ -1,0 +1,42 @@
+<div class="superposicao-modal" (click)="fechar()">
+  <div class="conteudo-modal" (click)="$event.stopPropagation()">
+    <div class="cabecalho-modal">
+      <h4>Definir Prazo da Tarefa</h4>
+      <button class="botao-fechar" (click)="fechar()">✕</button>
+    </div>
+
+    <div class="corpo-modal">
+      <div class="grupo-campos">
+        <label>Início</label>
+        <div class="grade-temporal">
+          <input type="date" class="form-control" [(ngModel)]="inicioDataSelecionada">
+          <input type="time" class="form-control" [(ngModel)]="inicioHoraSelecionada">
+        </div>
+      </div>
+
+      <div class="grupo-campos">
+        <label>Fim</label>
+        <div class="grade-temporal">
+          <input type="date" class="form-control" [(ngModel)]="fimDataSelecionada">
+          <input type="time" class="form-control" [(ngModel)]="fimHoraSelecionada">
+        </div>
+      </div>
+
+      <div class="grupo-campos">
+        <label>Dia da semana</label>
+        <select class="form-select" [(ngModel)]="diaSemanaSelecionado">
+          <option value="">Selecionar...</option>
+          <option *ngFor="let dia of diasSemana" [ngValue]="dia.valor">{{ dia.rotulo }}</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="rodape-modal">
+      <button class="botao-texto" type="button" (click)="limpar()">Remover prazo</button>
+      <div class="acoes-rodape">
+        <button class="botao-cancelar" type="button" (click)="fechar()">Cancelar</button>
+        <button class="botao-salvar" type="button" (click)="salvar()">Salvar</button>
+      </div>
+    </div>
+  </div>
+</div>
