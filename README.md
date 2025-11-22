@@ -1,15 +1,15 @@
-# Lista de Tarefas
+# Lista de Tarefas simples para Desktop
 
 ![Task List](public/task-list.png)
 
-Uma aplicação web moderna para gerenciamento de tarefas pessoais, construída com Angular. Organize suas atividades por categorias, defina prazos com dias e horários específicos, e acompanhe seu progresso através de um sistema de pontuação semanal.
+Uma aplicação web moderna e simples para gerenciamento de tarefas pessoais, construída com Angular. Cada tarefa de uma a três categorias, um dia e horário a ser feita e no site tem a área de "Pontuação" pra acompanhar o seu progresso através de um sistema de pontuação semanal.
 
-> ⚠️ **Nota**: Esta aplicação foi desenvolvida exclusivamente para **desktop**. Não há versão responsiva para celular.
+> ⚠️ **Nota**: Esta aplicação foi desenvolvida exclusivamente para Desktop. Não há versão responsiva para celular.
 
 ## 🎯 Funcionalidades
 
 - **Gerenciamento Completo de Tarefas**: Crie, edite, delete e marque tarefas como concluídas
-- **6 Categorias Pré-configuradas**: Casa, Estudo, Trabalho, Pessoal, Saúde, Outras (com opção de criar categorias personalizadas)
+- **5 Categorias Pré-configuradas**: Casa, Estudo, Trabalho, Pessoal e Saúde (com opção de criar categorias personalizadas)
 - **Agendamento por Dia da Semana**: Defina o dia da semana e horário para cada tarefa
 - **Sistema de Pontuação Semanal**: Acompanhe seu progresso diário com variações
 - **Reset Automático**: Todas as tarefas são limpas todo domingo às 23h59 para uma nova semana
@@ -17,7 +17,6 @@ Uma aplicação web moderna para gerenciamento de tarefas pessoais, construída 
 - **Drag & Drop**: Reordene suas tarefas facilmente
 - **Persistência Local**: Dados armazenados em IndexedDB (sem necessidade de servidor)
 - **Interface Elegante**: Design moderno com tema lilás, prata e animações suaves
-- **Digitação Animada**: Campo de entrada com placeholder que se digita automaticamente
 
 ## 🚀 Tecnologias Utilizadas
 
@@ -122,13 +121,7 @@ src/app/
 
 MIT License - veja o arquivo LICENSE para detalhes.
 
-## 👤 Autor
-
-**Eric de Souza**
-
----
-
-Desenvolvido com ❤️ para ajudar você a organizar sua vida de forma semanal e eficiente!
+Desenvolvido por Eric Dala Porta.
 
 
 
