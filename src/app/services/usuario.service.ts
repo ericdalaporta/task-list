@@ -21,7 +21,7 @@ export class ServicoUsuarios {
    */
   private async carregarUsuarios() {
     try {
-      const usuarios = await this.bd.obterFamiliares() || [];
+      const usuarios = await this.bd.obterUsuarios() || [];
       console.log('📦 Usuários carregados:', usuarios);
       this.usuariosSubject.next(usuarios);
     } catch (erro) {
@@ -55,7 +55,7 @@ export class ServicoUsuarios {
       
       // Salva no banco
       try {
-        await this.bd.adicionarFamiliar(novoUsuario);
+        await this.bd.adicionarUsuario(novoUsuario);
         console.log('✅ [SERVIÇO] Salvo no BD');
       } catch (erroBD) {
         console.error('❌ [SERVIÇO] Erro ao salvar no BD:', erroBD);
@@ -78,7 +78,7 @@ export class ServicoUsuarios {
    */
   async removerUsuario(usuarioId: number): Promise<void> {
     try {
-      await this.bd.removerFamiliar(usuarioId);
+      await this.bd.removerUsuario(usuarioId);
       await this.carregarUsuarios();
     } catch (erro) {
       console.error('Erro ao remover usuário:', erro);

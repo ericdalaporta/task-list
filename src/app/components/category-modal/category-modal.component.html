@@ -56,7 +56,14 @@
 
     <div class="rodape-modal">
       <button class="botao-cancelar" (click)="fechar()">Cancelar</button>
-      <button class="botao-salvar" [disabled]="categoriasAtribuidasATarefa.length === 0" (click)="salvar()">Salvar</button>
+      <button
+        class="botao-salvar"
+        [class.ativo]="categoriasAtribuidasATarefa.length > 0"
+        [disabled]="categoriasAtribuidasATarefa.length === 0"
+        (click)="salvar()"
+      >
+        Salvar
+      </button>
     </div>
   </div>
 </div>

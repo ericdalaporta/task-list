@@ -3,6 +3,9 @@ import { CONFIG_BANCO_DADOS, CONFIG_ARMAZEM } from '../shared/constants';
 
 @Injectable({ providedIn: 'root' })
 export class ServicoBaseDados {
+  obterFamiliares() {
+    throw new Error('Method not implemented.');
+  }
   private bancoDados: IDBDatabase | null = null;
   
   // evita inicializar mt vezes
